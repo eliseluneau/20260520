@@ -151,10 +151,61 @@ code { background: rgba(255,255,255,0.14); padding: 1px 6px; border-radius: 4px;
 
 /* ── Responsive ── */
 @media (max-width: 640px) {
-  .cg2, .cg3 { grid-template-columns: 1fr; }
-  .twocol { grid-template-columns: 1fr; }
-  .itiles { flex-direction: column; }
+  :root {
+    --px: 1.2rem;
+    --pt: 1.1rem;
+    --pb: 3.8rem;
+    --gap: 0.5rem;
+  }
+
+  /* Allow slides to scroll vertically on mobile */
+  .slide { overflow-y: auto; overflow-x: hidden; -webkit-overflow-scrolling: touch; }
+
+  /* Kill gap-push on mobile — let natural spacing do the work */
+  .gap-push { height: 0.4rem; }
+
+  /* Collapse grids to single column */
+  .cg2, .cg3 { grid-template-columns: 1fr; gap: 0.5rem; }
+  .twocol { grid-template-columns: 1fr; gap: 0.5rem; }
+  .itiles { flex-direction: column; gap: 0.5rem; }
+
+  /* Smaller type on mobile */
+  h1.big  { font-size: clamp(2.2rem, 11vw, 3rem); }
+  h2.big  { font-size: clamp(1.6rem, 8vw, 2.2rem); }
+  .sub    { font-size: 0.9rem; }
+
+  /* Tighter cards and steps */
+  .card { padding: 0.65rem 0.75rem; }
+  .card-h { font-size: 0.82rem; }
+  .card-p { font-size: 0.78rem; line-height: 1.45; }
+  .card-num { font-size: 1.2rem; margin-bottom: 0.2rem; }
+  .cgrid { gap: 0.5rem; }
+
+  .step { padding: 0.5rem 0.7rem; }
+  .steps { gap: 0.45rem; }
+  .step-txt { font-size: 0.8rem; }
+
+  .itile { padding: 0.75rem 0.8rem; }
+  .itile-icon { font-size: 1.4rem; margin-bottom: 0.3rem; }
+  .itile-h { font-size: 0.85rem; }
+  .itile-p { font-size: 0.78rem; }
+
+  .infobar { font-size: 0.78rem; padding: 0.6rem 0.75rem; line-height: 1.45; }
+
+  /* Smaller slide label and tags */
+  .slide-label { font-size: 9px; }
+  .tag { font-size: 9px; padding: 2px 7px; }
+
+  /* Tricolor stays compact */
+  .tricolor { width: 36px; }
+
+  /* Cover: don't center vertically on mobile, just stack naturally */
+  .cover-body { flex: none; justify-content: flex-start; padding: 0.5rem 0; }
+
+  /* Twocol inner gap */
+  .twocol > div { gap: 0.45rem; }
 }
+
 @media (min-width: 641px) and (max-width: 860px) {
   .cg3 { grid-template-columns: 1fr 1fr; }
 }
