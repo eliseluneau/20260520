@@ -8,68 +8,35 @@
 <style>
 :root {
   --ft-blue: #000091;
-  --ft-red: #E1000F;
+  --ft-red:  #E1000F;
   --ft-white: #FFFFFF;
   --ft-black: #161616;
   --ft-offwhite: #F6F6F9;
-  /* Fluid spacing tokens */
-  --pad-x: clamp(1.25rem, 6vw, 5rem);
-  --pad-top: clamp(1.4rem, 4.5vh, 3.2rem);
-  --pad-bot: clamp(3.5rem, 9vh, 5.5rem);
+  --px:   clamp(1.4rem, 5.5vw, 5rem);
+  --pt:   clamp(2rem, 5.5vh, 4.2rem);
+  --pb:   clamp(4rem,   9.5vh, 5.8rem);
+  --gap:  clamp(0.5rem, 1.8vh, 1.3rem);
 }
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { height: 100%; }
-body { font-family: 'DM Sans', sans-serif; background: var(--ft-blue); height: 100%; overflow: hidden; }
+html, body { height: 100%; overflow: hidden; font-family: 'DM Sans', sans-serif; background: var(--ft-blue); }
 
-/* ── Progress bar ── */
-#progress {
-  position: fixed; top: 0; left: 0; height: 3px;
-  background: var(--ft-red);
-  transition: width 0.45s cubic-bezier(0.16,1,0.3,1);
-  z-index: 200;
-}
+/* ── Progress ── */
+#progress { position: fixed; top: 0; left: 0; height: 3px; background: var(--ft-red); transition: width 0.45s cubic-bezier(0.16,1,0.3,1); z-index: 200; }
 
 /* ── Keyboard hint ── */
-#kbd-hint {
-  position: fixed; top: clamp(0.75rem,1.5vh,1.2rem); right: clamp(1rem,2vw,2rem);
-  font-size: 11px; color: rgba(255,255,255,0.35);
-  letter-spacing: 0.06em; z-index: 200; pointer-events: none;
-}
+#kbd-hint { position: fixed; top: clamp(0.7rem,1.4vh,1.2rem); right: clamp(1rem,2vw,2rem); font-size: 11px; color: rgba(255,255,255,0.3); letter-spacing: 0.06em; z-index: 200; pointer-events: none; }
 @media (max-width: 540px) { #kbd-hint { display: none; } }
 
 /* ── Nav ── */
-#nav {
-  position: fixed; bottom: clamp(1rem,2.5vh,1.8rem); left: 50%;
-  transform: translateX(-50%);
-  display: flex; align-items: center; gap: clamp(0.6rem,1.5vw,1.2rem);
-  z-index: 200;
-}
-.nav-btn {
-  width: clamp(34px,4.5vw,42px); height: clamp(34px,4.5vw,42px);
-  border-radius: 50%;
-  border: 1.5px solid rgba(255,255,255,0.3);
-  background: rgba(0,0,0,0.25);
-  color: white; font-size: clamp(14px,2vw,17px); cursor: pointer;
-  display: flex; align-items: center; justify-content: center;
-  transition: all 0.18s; flex-shrink: 0;
-}
+#nav { position: fixed; bottom: clamp(0.9rem,2vh,1.6rem); left: 50%; transform: translateX(-50%); display: flex; align-items: center; gap: clamp(0.6rem,1.5vw,1.2rem); z-index: 200; }
+.nav-btn { width: clamp(32px,4vw,42px); height: clamp(32px,4vw,42px); border-radius: 50%; border: 1.5px solid rgba(255,255,255,0.3); background: rgba(0,0,0,0.25); color: white; font-size: clamp(13px,1.8vw,17px); cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.18s; }
 .nav-btn:hover:not(:disabled) { background: rgba(255,255,255,0.18); border-color: rgba(255,255,255,0.7); }
 .nav-btn:disabled { opacity: 0.25; cursor: default; }
-#slide-counter {
-  color: rgba(255,255,255,0.55); font-size: 12px;
-  font-weight: 500; letter-spacing: 0.08em;
-  min-width: 40px; text-align: center; white-space: nowrap;
-}
+#slide-counter { color: rgba(255,255,255,0.5); font-size: 12px; font-weight: 500; letter-spacing: 0.08em; min-width: 40px; text-align: center; }
 
-/* ── Dot indicators ── */
-#dots {
-  position: fixed; bottom: clamp(1.1rem,2.7vh,1.9rem); right: clamp(1rem,2vw,2rem);
-  display: flex; gap: 5px; align-items: center; z-index: 200;
-}
-.dot {
-  width: 6px; height: 6px; border-radius: 50%;
-  background: rgba(255,255,255,0.25); cursor: pointer; transition: all 0.2s;
-}
+/* ── Dots ── */
+#dots { position: fixed; bottom: clamp(1rem,2.2vh,1.8rem); right: clamp(1rem,2vw,2rem); display: flex; gap: 5px; align-items: center; z-index: 200; }
+.dot { width: 6px; height: 6px; border-radius: 50%; background: rgba(255,255,255,0.25); cursor: pointer; transition: all 0.2s; }
 .dot.active { background: white; width: 18px; border-radius: 3px; }
 @media (max-width: 480px) { #dots { display: none; } }
 
@@ -80,188 +47,116 @@ body { font-family: 'DM Sans', sans-serif; background: var(--ft-blue); height: 1
 .slide {
   position: absolute; inset: 0;
   display: flex; flex-direction: column;
-  padding: var(--pad-top) var(--pad-x) var(--pad-bot);
+  padding: var(--pt) var(--px) var(--pb);
+  gap: var(--gap);
   opacity: 0; transform: translateX(60px);
-  transition: opacity 0.5s cubic-bezier(0.16,1,0.3,1),
-              transform 0.5s cubic-bezier(0.16,1,0.3,1);
+  transition: opacity 0.5s cubic-bezier(0.16,1,0.3,1), transform 0.5s cubic-bezier(0.16,1,0.3,1);
   pointer-events: none; overflow: hidden;
 }
-.slide.active { opacity: 1; transform: translateX(0); pointer-events: all; }
-.slide.prev { opacity: 0; transform: translateX(-60px); }
+.slide.active    { opacity: 1; transform: translateX(0); pointer-events: all; }
+.slide.prev      { opacity: 0; transform: translateX(-60px); }
 .slide.exit-right { opacity: 0; transform: translateX(60px); }
 
+/* ── Spacer — breathing room between header and content ── */
+.gap-push { height: clamp(1.2rem, 4vh, 3rem); flex-shrink: 0; }
+
 /* ── Themes ── */
-.theme-dark     { background: var(--ft-blue);   color: var(--ft-white); }
-.theme-white    { background: var(--ft-white);   color: var(--ft-black); }
-.theme-red      { background: var(--ft-red);     color: var(--ft-white); }
-.theme-midnight { background: #0b0b2e;           color: var(--ft-white); }
+.theme-dark     { background: var(--ft-blue); color: var(--ft-white); }
+.theme-white    { background: var(--ft-white); color: var(--ft-black); }
+.theme-red      { background: var(--ft-red);   color: var(--ft-white); }
+.theme-midnight { background: #0b0b2e;         color: var(--ft-white); }
 
 /* ── Deco circles ── */
 .deco { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
-.deco::after {
-  content: ''; position: absolute;
-  right: -40px; top: -40px;
-  width: clamp(200px,30vw,380px); height: clamp(200px,30vw,380px);
-  border: clamp(30px,5vw,65px) solid rgba(255,255,255,0.035);
-  border-radius: 50%;
-}
-.deco::before {
-  content: ''; position: absolute;
-  right: clamp(40px,8vw,90px); bottom: clamp(40px,8vh,70px);
-  width: clamp(100px,15vw,190px); height: clamp(100px,15vw,190px);
-  border: clamp(20px,3vw,42px) solid rgba(255,255,255,0.025);
-  border-radius: 50%;
-}
+.deco::after  { content: ''; position: absolute; right: -40px; top: -40px; width: clamp(180px,28vw,380px); height: clamp(180px,28vw,380px); border: clamp(28px,4.5vw,62px) solid rgba(255,255,255,0.035); border-radius: 50%; }
+.deco::before { content: ''; position: absolute; right: clamp(40px,7vw,90px); bottom: clamp(40px,7vh,70px); width: clamp(90px,13vw,190px); height: clamp(90px,13vw,190px); border: clamp(18px,2.8vw,42px) solid rgba(255,255,255,0.025); border-radius: 50%; }
 
 /* ── Tricolor ── */
-.tricolor {
-  display: flex; height: 4px; width: clamp(40px,5vw,56px);
-  gap: 2px; margin-bottom: clamp(1rem,2.5vh,1.8rem); flex-shrink: 0;
-}
+.tricolor { display: flex; height: 4px; width: clamp(36px,4.5vw,56px); gap: 2px; flex-shrink: 0; }
 .tricolor span { flex: 1; }
-.tc-b { background: var(--ft-blue); }
-.tc-w { background: var(--ft-white); }
-.tc-r { background: var(--ft-red); }
+.tc-b { background: var(--ft-blue); }  .tc-w { background: var(--ft-white); }  .tc-r { background: var(--ft-red); }
 .theme-dark .tc-b, .theme-midnight .tc-b { background: rgba(255,255,255,0.35); }
-.theme-red .tc-b { background: rgba(0,0,0,0.25); }
-.theme-red .tc-w { background: rgba(255,255,255,0.5); }
-.theme-red .tc-r { background: rgba(0,0,0,0.2); }
+.theme-red .tc-b { background: rgba(0,0,0,0.25); }  .theme-red .tc-w { background: rgba(255,255,255,0.5); }  .theme-red .tc-r { background: rgba(0,0,0,0.2); }
 .theme-white .tc-w { background: #ccc; }
 
 /* ── Typography ── */
-.slide-label {
-  font-size: clamp(9px,1.1vw,10.5px); font-weight: 600;
-  letter-spacing: 0.16em; text-transform: uppercase;
-  opacity: 0.55; margin-bottom: 0.5rem;
-}
-h1.big {
-  font-family: 'DM Serif Display', serif;
-  font-size: clamp(2.4rem, 6.5vw, 5.2rem);
-  line-height: 1.0; margin-bottom: clamp(0.8rem,2vh,1.4rem);
-}
-h2.big {
-  font-family: 'DM Serif Display', serif;
-  font-size: clamp(1.7rem, 4vw, 3rem);
-  line-height: 1.05; margin-bottom: clamp(0.6rem,1.5vh,1.2rem);
-}
-.sub {
-  font-size: clamp(0.88rem, 1.5vw, 1.1rem);
-  font-weight: 300; line-height: 1.55;
-  max-width: 600px; opacity: 0.75;
-}
+.slide-label { font-size: clamp(9px,1vw,10.5px); font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; opacity: 0.55; }
+h1.big  { font-family: 'DM Serif Display', serif; font-size: clamp(2.8rem, min(9vw,13vh), 7rem); line-height: 1.0; }
+h2.big  { font-family: 'DM Serif Display', serif; font-size: clamp(2.2rem, min(5vw,8vh), 3.8rem); line-height: 1.05; }
+.sub    { font-size: clamp(1rem, min(1.6vw,2.6vh), 1.25rem); font-weight: 300; line-height: 1.55; max-width: 660px; opacity: 0.75; }
 
 /* ── Tags ── */
-.tag {
-  display: inline-block; padding: 3px 9px;
-  border-radius: 4px; font-size: clamp(9px,1vw,10.5px);
-  font-weight: 600; letter-spacing: 0.07em; text-transform: uppercase;
-}
-.tag-red  { background: var(--ft-red);  color: white; }
-.tag-blue { background: var(--ft-blue); color: white; }
+.tag { display: inline-block; padding: clamp(2px,0.4vh,3px) clamp(7px,1vw,10px); border-radius: 4px; font-size: clamp(9px,0.9vw,10.5px); font-weight: 600; letter-spacing: 0.07em; text-transform: uppercase; }
+.tag-red   { background: var(--ft-red);  color: white; }
+.tag-blue  { background: var(--ft-blue); color: white; }
 .tag-ghost   { background: rgba(255,255,255,0.13); color: white; }
 .tag-outline { background: #eeeef8; color: var(--ft-blue); border: 1px solid #d0d0ea; }
 
-/* ── Card grid ── */
-.cgrid { display: grid; gap: clamp(0.6rem,1.2vh,0.9rem); margin-top: clamp(1rem,2.5vh,1.8rem); }
+.cgrid { display: grid; gap: clamp(0.75rem,1.8vh,1.4rem); }
 .cg2 { grid-template-columns: 1fr 1fr; }
 .cg3 { grid-template-columns: 1fr 1fr 1fr; }
-@media (max-width: 640px) {
-  .cg2, .cg3 { grid-template-columns: 1fr; }
-}
-@media (min-width: 641px) and (max-width: 860px) {
-  .cg3 { grid-template-columns: 1fr 1fr; }
-}
 
-.card { border-radius: 8px; padding: clamp(0.75rem,1.5vh,1.15rem) clamp(0.75rem,1.5vw,1.25rem); }
-.theme-dark .card, .theme-midnight .card {
-  background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.11);
-}
+.card { border-radius: 8px; padding: clamp(0.9rem, 2.2vh, 1.5rem) clamp(0.65rem,1.4vw,1.2rem); }
+.theme-dark .card, .theme-midnight .card { background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.11); }
 .theme-white .card { background: var(--ft-offwhite); border: 1px solid #e3e3ef; }
 .theme-red .card   { background: rgba(0,0,0,0.18);   border: 1px solid rgba(255,255,255,0.14); }
-.card-num {
-  font-family: 'DM Serif Display', serif;
-  font-size: clamp(1.4rem,2.5vw,1.9rem); line-height: 1;
-  color: var(--ft-red); margin-bottom: 0.4rem;
-}
+.card-num { font-family: 'DM Serif Display', serif; font-size: clamp(1.4rem,min(2.4vw,3.8vh),2.1rem); line-height: 1; color: var(--ft-red); margin-bottom: clamp(0.25rem,0.6vh,0.5rem); }
 .theme-white .card-num { color: var(--ft-blue); }
 .theme-red   .card-num { color: rgba(255,255,255,0.5); }
-.card-h { font-size: clamp(0.78rem,1.1vw,0.88rem); font-weight: 600; margin-bottom: 0.25rem; }
-.card-p { font-size: clamp(0.74rem,1vw,0.82rem); line-height: 1.5; opacity: 0.65; }
+.card-h { font-size: clamp(0.88rem,min(1.15vw,1.8vh),1rem); font-weight: 600; margin-bottom: clamp(0.2rem,0.5vh,0.35rem); }
+.card-p { font-size: clamp(0.82rem,min(1.05vw,1.65vh),0.93rem); line-height: 1.55; opacity: 0.65; }
 
 /* ── Steps ── */
-.steps { display: flex; flex-direction: column; gap: clamp(0.45rem,1vh,0.65rem); margin-top: clamp(1rem,2vh,1.5rem); }
-.step {
-  display: flex; align-items: flex-start; gap: 0.8rem;
-  padding: clamp(0.55rem,1.2vh,0.8rem) clamp(0.7rem,1.2vw,1rem);
-  border-radius: 6px; border-left: 3px solid var(--ft-red);
-}
+.steps { display: flex; flex-direction: column; gap: clamp(0.6rem,1.4vh,1rem); }
+.step { display: flex; align-items: center; gap: 0.8rem; padding: clamp(0.6rem,1.3vh,1rem) clamp(0.65rem,1.2vw,1rem); border-radius: 6px; border-left: 3px solid var(--ft-red); }
 .theme-dark .step, .theme-midnight .step { background: rgba(255,255,255,0.07); }
-.theme-white .step  { background: var(--ft-offwhite); border-color: var(--ft-blue); }
-.theme-red .step    { background: rgba(0,0,0,0.18); }
-.step-n {
-  font-family: 'DM Serif Display', serif;
-  font-size: clamp(0.85rem,1.2vw,1rem); color: var(--ft-red);
-  min-width: 20px; line-height: 1.4; flex-shrink: 0;
-}
+.theme-white .step { background: var(--ft-offwhite); border-color: var(--ft-blue); }
+.theme-red .step   { background: rgba(0,0,0,0.18); }
+.step-n { font-family: 'DM Serif Display', serif; font-size: clamp(0.88rem,min(1.2vw,2vh),1.1rem); color: var(--ft-red); min-width: 20px; line-height: 1; flex-shrink: 0; }
 .theme-white .step-n { color: var(--ft-blue); }
-.step-txt { font-size: clamp(0.78rem,1.1vw,0.86rem); line-height: 1.45; }
+.step-txt { font-size: clamp(0.84rem,min(1.05vw,1.7vh),0.94rem); line-height: 1.5; }
 .step-txt strong { font-weight: 600; display: block; margin-bottom: 1px; }
 
 /* ── Two-col ── */
-.twocol { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(1.2rem,3vw,2.5rem); margin-top: clamp(0.8rem,2vh,1.5rem); }
-@media (max-width: 640px) { .twocol { grid-template-columns: 1fr; } }
+.twocol { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(1rem,3vw,2.5rem); }
+.twocol > div { display: flex; flex-direction: column; gap: clamp(0.35rem,0.9vh,0.6rem); }
 
-/* ── Info bar ── */
-.infobar {
-  border-radius: 7px; padding: clamp(0.7rem,1.5vh,1rem) clamp(0.8rem,1.5vw,1.3rem);
-  margin-top: clamp(0.8rem,1.5vh,1.25rem);
-  font-size: clamp(0.78rem,1.1vw,0.88rem); line-height: 1.5; flex-shrink: 0;
-}
-
-/* ── Icon tiles ── */
-.itiles { display: flex; gap: clamp(0.6rem,1.2vw,1rem); margin-top: clamp(1rem,2.5vh,1.8rem); }
-@media (max-width: 540px) { .itiles { flex-direction: column; } }
-.itile {
-  flex: 1; padding: clamp(0.75rem,1.5vh,1.2rem) clamp(0.75rem,1.5vw,1rem);
-  border-radius: 8px; text-align: center;
-}
+/* ── Itiles ── */
+.itiles { display: flex; gap: clamp(0.6rem,1.2vw,1rem); align-items: stretch; }
+.itile { flex: 1; border-radius: 8px; padding: clamp(0.7rem,1.5vh,1.2rem) clamp(0.7rem,1.2vw,1rem); text-align: center; display: flex; flex-direction: column; align-items: center; }
 .theme-white .itile { background: var(--ft-offwhite); border: 1px solid #e3e3ef; }
 .theme-dark  .itile { background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.1); }
-.itile-icon { font-size: clamp(1.4rem,2.5vw,1.9rem); margin-bottom: 0.5rem; display: block; }
-.itile-h    { font-size: clamp(0.8rem,1.1vw,0.88rem); font-weight: 600; margin-bottom: 3px; }
-.itile-p    { font-size: clamp(0.72rem,1vw,0.78rem); opacity: 0.62; line-height: 1.45; }
+.itile-icon { font-size: clamp(1.4rem,min(2.5vw,4vh),2.2rem); margin-bottom: clamp(0.35rem,1vh,0.7rem); display: block; }
+.itile-h    { font-size: clamp(0.88rem,min(1.2vw,1.9vh),1rem); font-weight: 600; margin-bottom: 5px; }
+.itile-p    { font-size: clamp(0.8rem,min(1vw,1.6vh),0.88rem); opacity: 0.62; line-height: 1.5; flex: 1; }
 
-/* ── Meta row (title slide) ── */
-.meta-row { display: flex; gap: clamp(1rem,3vw,2rem); flex-wrap: wrap; margin-top: auto; padding-top: clamp(1.5rem,3vh,2.2rem); }
-.meta-item { font-size: clamp(0.72rem,1.1vw,0.82rem); opacity: 0.55; }
-.meta-item strong { display: block; font-size: clamp(0.78rem,1.2vw,0.9rem); opacity: 1; margin-bottom: 1px; }
+/* ── Info bar ── */
+.infobar { border-radius: 7px; padding: clamp(0.7rem,1.5vh,1.1rem) clamp(0.7rem,1.3vw,1.3rem); font-size: clamp(0.84rem,min(1.05vw,1.7vh),0.94rem); line-height: 1.55; flex-shrink: 0; }
 
-/* ── Code chip ── */
-code {
-  background: rgba(255,255,255,0.14); color: inherit;
-  padding: 1px 6px; border-radius: 4px; font-size: 0.85em;
-  font-family: 'Courier New', monospace;
-}
-.theme-white code { background: #e8e8f4; color: var(--ft-blue); }
-
-/* ── Slide loc (top-left) ── */
-#slide-loc {
-  position: fixed; top: clamp(0.7rem,1.4vh,1.2rem); left: clamp(1rem,2vw,2rem);
-  font-size: 10px; color: rgba(255,255,255,0.28);
-  letter-spacing: 0.1em; z-index: 200; pointer-events: none;
-}
+/* ── Slide loc ── */
+#slide-loc { position: fixed; top: clamp(0.7rem,1.4vh,1.2rem); left: clamp(1rem,2vw,2rem); font-size: 10px; color: rgba(255,255,255,0.25); letter-spacing: 0.1em; z-index: 200; pointer-events: none; }
 
 /* ── Click zones ── */
 .click-prev { position: fixed; left: 0; top: 0; width: 15%; height: 100%; cursor: w-resize; z-index: 50; }
 .click-next { position: fixed; right: 0; top: 0; width: 15%; height: 100%; cursor: e-resize; z-index: 50; }
 @media (max-width: 480px) { .click-prev, .click-next { display: none; } }
 
-/* ── Slide 1 cover: push meta to bottom ── */
-.slide-cover { justify-content: flex-start; }
-.slide-cover .cover-body { flex: 1; display: flex; flex-direction: column; justify-content: center; }
+/* ── Code chip ── */
+code { background: rgba(255,255,255,0.14); padding: 1px 6px; border-radius: 4px; font-size: 0.85em; font-family: 'Courier New', monospace; }
+.theme-white code { background: #e8e8f4; color: var(--ft-blue); }
 
-/* ── Slide content spacer ── */
-.grow { flex: 1; }
+/* ── Cover: title block centered in the gap ── */
+.cover-body { flex: 1; min-height: 0; display: flex; flex-direction: column; justify-content: center; gap: clamp(0.25rem,0.8vh,0.55rem); }
+
+/* ── Responsive ── */
+@media (max-width: 640px) {
+  .cg2, .cg3 { grid-template-columns: 1fr; }
+  .twocol { grid-template-columns: 1fr; }
+  .itiles { flex-direction: column; }
+}
+@media (min-width: 641px) and (max-width: 860px) {
+  .cg3 { grid-template-columns: 1fr 1fr; }
+}
 </style>
 </head>
 <body>
@@ -269,117 +164,92 @@ code {
 <div id="progress"></div>
 <div id="kbd-hint">← → to navigate</div>
 <div id="slide-loc"></div>
-
 <div class="click-prev" onclick="navigate(-1)"></div>
 <div class="click-next" onclick="navigate(1)"></div>
 
 <div id="slides">
 
-  <!-- ─── SLIDE 1: Cover ─── -->
-  <div class="slide theme-dark slide-cover active" data-index="0">
+  <!-- ─── 1. Cover ─── -->
+  <div class="slide theme-dark active" data-index="0">
     <div class="deco"></div>
 
-    <!-- Logo -->
     <img src="https://lafrenchtech.gouv.fr/app/themes/actimage-theme/public/images/logo/logo-french-tech.40489d.svg"
-         alt="La French Tech"
-         style="height:clamp(26px,3.5vh,38px);width:auto;flex-shrink:0;filter:brightness(0) invert(1);margin-bottom:clamp(1.2rem,4vh,2.8rem);">
+         alt="La French Tech" style="height:clamp(24px,3.2vh,36px);width:auto;flex-shrink:0;filter:brightness(0) invert(1);">
 
-    <!-- Tricolor -->
     <div class="tricolor"><span class="tc-b"></span><span class="tc-w"></span><span class="tc-r"></span></div>
 
-    <!-- Main copy — grows to fill space -->
+    <!-- Title centered in whatever space remains between logo/tricolor and meta row -->
     <div class="cover-body">
       <div class="slide-label">Introduction to AI tools · Copenhagen</div>
-      <h1 class="big">Claude Code<br><em style="font-style:italic;opacity:0.6">&amp;</em> Skills</h1>
-      <p class="sub">A beginner-friendly introduction to working with Claude directly in your terminal, files, and daily workflows.</p>
+      <h1 class="big">Claude Code<br><em style="font-style:italic;opacity:0.55">&amp;</em> Skills</h1>
+      <p class="sub" style="margin-top:clamp(0.2rem,0.5vh,0.4rem)">A beginner-friendly introduction to working with Claude directly in your terminal, files, and daily workflows.</p>
     </div>
 
-    <!-- Meta pushed to bottom -->
-    <div class="meta-row">
-      <div class="meta-item"><strong>May 20, 2026</strong>French Tech Copenhagen</div>
-      <div class="meta-item"><strong>Presenter</strong>Hadrien Matringe</div>
-      <div class="meta-item"><strong>Audience</strong>Beginners welcome</div>
-      <div class="meta-item"><strong>Tool</strong>Claude by Anthropic</div>
+    <div style="display:flex;gap:clamp(1rem,3vw,2rem);flex-wrap:wrap;flex-shrink:0;">
+      <div style="font-size:clamp(0.72rem,1.1vw,0.82rem);opacity:0.5;"><strong style="display:block;opacity:1;margin-bottom:1px;font-size:clamp(0.76rem,1.2vw,0.88rem)">May 20, 2026</strong>French Tech Copenhagen</div>
+      <div style="font-size:clamp(0.72rem,1.1vw,0.82rem);opacity:0.5;"><strong style="display:block;opacity:1;margin-bottom:1px;font-size:clamp(0.76rem,1.2vw,0.88rem)">Presenter</strong>Hadrien Matringe</div>
+      <div style="font-size:clamp(0.72rem,1.1vw,0.82rem);opacity:0.5;"><strong style="display:block;opacity:1;margin-bottom:1px;font-size:clamp(0.76rem,1.2vw,0.88rem)">Audience</strong>Beginners welcome</div>
+      <div style="font-size:clamp(0.72rem,1.1vw,0.82rem);opacity:0.5;"><strong style="display:block;opacity:1;margin-bottom:1px;font-size:clamp(0.76rem,1.2vw,0.88rem)">Tool</strong>Claude by Anthropic</div>
     </div>
   </div>
 
-  <!-- ─── SLIDE 2: What is Claude Code ─── -->
+  <!-- ─── 2. What is Claude Code ─── -->
   <div class="slide theme-white" data-index="1">
     <div class="tricolor"><span class="tc-b"></span><span class="tc-w"></span><span class="tc-r"></span></div>
     <div class="slide-label">Overview</div>
     <h2 class="big">What is Claude Code?</h2>
     <p class="sub">An AI assistant that works <strong>directly with your files</strong> — from your terminal, inside your actual project folder.</p>
+
+    <div class="gap-push"></div><!-- space lives here, between title and cards -->
+
     <div class="cgrid cg3">
-      <div class="card">
-        <div class="card-num">01</div>
-        <div class="card-h">Terminal-based</div>
-        <div class="card-p">Runs in your command line. No browser tab — Claude lives where you actually work.</div>
-      </div>
-      <div class="card">
-        <div class="card-num">02</div>
-        <div class="card-h">File-aware</div>
-        <div class="card-p">Reads and writes files on your computer. Scans your entire folder to understand the full context.</div>
-      </div>
-      <div class="card">
-        <div class="card-num">03</div>
-        <div class="card-h">Subscription-based</div>
-        <div class="card-p">No freemium restrictions — requires a Claude plan, but unlocks full capabilities across your workspace.</div>
-      </div>
+      <div class="card"><div class="card-num">01</div><div class="card-h">Terminal-based</div><div class="card-p">Runs in your command line. No browser tab — Claude lives where you actually work.</div></div>
+      <div class="card"><div class="card-num">02</div><div class="card-h">File-aware</div><div class="card-p">Reads and writes files on your computer. Scans your entire folder to understand the full context.</div></div>
+      <div class="card"><div class="card-num">03</div><div class="card-h">Subscription-based</div><div class="card-p">No freemium restrictions — requires a Claude plan, but unlocks full capabilities across your workspace.</div></div>
     </div>
     <div class="infobar" style="background:#000091;color:white;">
       💡 <strong>Not a terminal person?</strong> The <strong>Claude Code app</strong> gives you the same power in a friendlier interface — no command line required.
     </div>
   </div>
 
-  <!-- ─── SLIDE 3: Getting Started ─── -->
+  <!-- ─── 3. Getting Started ─── -->
   <div class="slide theme-dark" data-index="2">
     <div class="deco"></div>
     <div class="tricolor"><span class="tc-b"></span><span class="tc-w"></span><span class="tc-r"></span></div>
     <div class="slide-label">Setup</div>
     <h2 class="big">Getting Started</h2>
     <p class="sub">Three steps and you're ready to use Claude directly in your projects.</p>
+
+    <div class="gap-push"></div>
+
     <div class="steps">
-      <div class="step">
-        <span class="step-n">1</span>
-        <div class="step-txt"><strong>Install Claude Code</strong>Copy the install command from claude.ai/code and paste it into your terminal. One line, done.</div>
-      </div>
-      <div class="step">
-        <span class="step-n">2</span>
-        <div class="step-txt"><strong>Navigate to your project folder</strong>Claude works within a single directory — your codebase, documents, or any workspace folder you choose.</div>
-      </div>
-      <div class="step">
-        <span class="step-n">3</span>
-        <div class="step-txt"><strong>Launch and go</strong>Type <code>claude</code> to start. It scans your folder automatically and is immediately ready to read, write, and assist.</div>
-      </div>
+      <div class="step"><span class="step-n">1</span><div class="step-txt"><strong>Install Claude Code</strong>Copy the install command from claude.ai/code and paste it into your terminal. One line, done.</div></div>
+      <div class="step"><span class="step-n">2</span><div class="step-txt"><strong>Navigate to your project folder</strong>Claude works within a single directory — your codebase, documents, or any workspace folder you choose.</div></div>
+      <div class="step"><span class="step-n">3</span><div class="step-txt"><strong>Launch and go</strong>Type <code>claude</code> to start. It scans your folder automatically and is immediately ready to read, write, and assist.</div></div>
     </div>
-    <div style="display:flex;gap:0.75rem;flex-wrap:wrap;margin-top:clamp(0.8rem,2vh,1.4rem)">
+    <div style="display:flex;gap:0.65rem;flex-wrap:wrap;flex-shrink:0;">
       <span class="tag tag-ghost">Mac · Windows · Linux</span>
       <span class="tag tag-red">Claude subscription required</span>
       <span class="tag tag-ghost">Node.js required</span>
     </div>
   </div>
 
-  <!-- ─── SLIDE 4: The Claude Ecosystem ─── -->
+  <!-- ─── 4. Ecosystem ─── -->
   <div class="slide theme-white" data-index="3">
     <div class="tricolor"><span class="tc-b"></span><span class="tc-w"></span><span class="tc-r"></span></div>
     <div class="slide-label">The Claude Ecosystem</div>
     <h2 class="big">Three ways to use Claude</h2>
+
+    <div class="gap-push"></div>
+
     <div class="itiles">
-      <div class="itile">
-        <span class="itile-icon">💬</span>
-        <div class="itile-h">Chat</div>
-        <div class="itile-p">The browser interface. Conversational, fast, perfect for questions, drafts, and exploration.</div>
-      </div>
-      <div class="itile">
-        <span class="itile-icon">🤝</span>
-        <div class="itile-h">Cowork</div>
-        <div class="itile-p">Desktop tool for non-developers. Automate file and task management without writing a line of code.</div>
-      </div>
+      <div class="itile"><span class="itile-icon">💬</span><div class="itile-h">Chat</div><div class="itile-p">The browser interface. Conversational, fast, perfect for questions, drafts, and exploration.</div></div>
+      <div class="itile"><span class="itile-icon">🤝</span><div class="itile-h">Cowork</div><div class="itile-p">Desktop tool for non-developers. Automate file and task management without writing a line of code.</div></div>
       <div class="itile" style="border:2px solid var(--ft-blue)!important;background:#eeeef9!important;">
         <span class="itile-icon">⌨️</span>
         <div class="itile-h" style="color:var(--ft-blue)">Code</div>
         <div class="itile-p">Creates code <em>and</em> accepts chat input — the most powerful mode, combining both worlds in the terminal.</div>
-        <div style="margin-top:8px"><span class="tag tag-blue">Today's focus</span></div>
+        <div style="margin-top:clamp(0.4rem,1vh,0.8rem)"><span class="tag tag-blue">Today's focus</span></div>
       </div>
     </div>
     <div class="infobar" style="background:#f0f0f9;border-left:3px solid var(--ft-blue);">
@@ -387,147 +257,139 @@ code {
     </div>
   </div>
 
-  <!-- ─── SLIDE 5: Demo 1 — Excel ─── -->
+  <!-- ─── 5. Demo 1 — Excel ─── -->
   <div class="slide theme-midnight" data-index="4">
     <div class="deco"></div>
-    <div style="display:flex;align-items:center;gap:1rem;margin-bottom:clamp(1rem,2.5vh,1.8rem);flex-shrink:0">
+    <div style="display:flex;align-items:center;gap:1rem;flex-shrink:0;">
       <span class="tag tag-red">Demo 1</span>
-      <span style="font-size:clamp(0.72rem,1vw,0.8rem);opacity:0.45;letter-spacing:0.05em">Microsoft Excel × Claude</span>
+      <span style="font-size:clamp(0.7rem,1vw,0.8rem);opacity:0.4;letter-spacing:0.05em">Microsoft Excel × Claude</span>
     </div>
     <h2 class="big">Claude in Excel</h2>
     <p class="sub">Understanding financial models, catching bugs — and fixing them — without touching a formula.</p>
+
+    <div class="gap-push"></div>
+
     <div class="twocol">
       <div>
-        <p style="font-size:clamp(0.68rem,0.9vw,0.75rem);opacity:0.45;letter-spacing:0.12em;text-transform:uppercase;margin-bottom:0.8rem">How to activate</p>
-        <div class="steps" style="margin-top:0">
+        <p style="font-size:clamp(0.66rem,0.85vw,0.74rem);opacity:0.42;letter-spacing:0.12em;text-transform:uppercase;">How to activate</p>
+        <div class="steps">
           <div class="step"><span class="step-n" style="font-size:0.9rem">→</span><div class="step-txt">Open a financial spreadsheet with multi-year statements</div></div>
           <div class="step"><span class="step-n" style="font-size:0.9rem">→</span><div class="step-txt">Activate the <strong>Claude plugin</strong> (top right corner) — available with Claude + Microsoft 365</div></div>
           <div class="step"><span class="step-n" style="font-size:0.9rem">→</span><div class="step-txt">Ask questions in the chat panel that appears</div></div>
         </div>
       </div>
       <div>
-        <p style="font-size:clamp(0.68rem,0.9vw,0.75rem);opacity:0.45;letter-spacing:0.12em;text-transform:uppercase;margin-bottom:0.8rem">What it can do</p>
-        <div class="steps" style="margin-top:0">
-          <div class="step"><span class="step-n" style="color:#4ade80;font-size:1rem">✓</span><div class="step-txt"><strong>Highlights exact cells</strong> that answer your question</div></div>
-          <div class="step"><span class="step-n" style="color:#4ade80;font-size:1rem">✓</span><div class="step-txt"><strong>Flags bugs</strong> you didn't ask about — proactively</div></div>
-          <div class="step"><span class="step-n" style="color:#4ade80;font-size:1rem">✓</span><div class="step-txt"><strong>Updates the file</strong> directly with corrections</div></div>
-          <div class="step"><span class="step-n" style="color:#4ade80;font-size:1rem">✓</span><div class="step-txt"><strong>Creates a new sheet</strong> with only the data you asked for</div></div>
+        <p style="font-size:clamp(0.66rem,0.85vw,0.74rem);opacity:0.42;letter-spacing:0.12em;text-transform:uppercase;">What it can do</p>
+        <div class="steps">
+          <div class="step"><span class="step-n" style="color:#4ade80">✓</span><div class="step-txt"><strong>Highlights exact cells</strong> that answer your question</div></div>
+          <div class="step"><span class="step-n" style="color:#4ade80">✓</span><div class="step-txt"><strong>Flags bugs</strong> you didn't ask about — proactively</div></div>
+          <div class="step"><span class="step-n" style="color:#4ade80">✓</span><div class="step-txt"><strong>Updates the file</strong> directly with corrections</div></div>
+          <div class="step"><span class="step-n" style="color:#4ade80">✓</span><div class="step-txt"><strong>Creates a new sheet</strong> with only the data you asked for</div></div>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- ─── SLIDE 6: Demo 2 — Skills ─── -->
+  <!-- ─── 6. Demo 2 — Skills ─── -->
   <div class="slide theme-white" data-index="5">
     <div class="tricolor"><span class="tc-b"></span><span class="tc-w"></span><span class="tc-r"></span></div>
-    <div style="display:flex;align-items:center;gap:1rem;margin-bottom:0.4rem">
+    <div style="display:flex;align-items:center;gap:1rem;flex-shrink:0;">
       <span class="tag tag-blue">Demo 2</span>
-      <span style="font-size:clamp(0.72rem,1vw,0.8rem);opacity:0.45;letter-spacing:0.05em">Custom Commands</span>
+      <span style="font-size:clamp(0.7rem,1vw,0.8rem);opacity:0.4;letter-spacing:0.05em">Custom Commands</span>
     </div>
     <h2 class="big">Claude Skills</h2>
     <p class="sub">Package expertise as <code>/your-command</code> — reusable, shareable, instantly powerful.</p>
+
+    <div class="gap-push"></div>
+
     <div class="cgrid cg2">
       <div class="card">
-        <div class="card-h" style="color:var(--ft-blue);font-size:clamp(0.82rem,1.1vw,0.95rem);margin-bottom:0.5rem">What is a skill?</div>
-        <div class="card-p" style="line-height:1.6">A prompt-engineered context space that gives Claude <strong>deep, reusable expertise</strong> for a specific task. Think of it as a "second brain" — someone has already found the optimal way to prompt your workflow so you don't have to start from scratch.</div>
+        <div class="card-h" style="color:var(--ft-blue);font-size:clamp(0.8rem,1.1vw,0.95rem);">What is a skill?</div>
+        <div class="card-p" style="line-height:1.6;">A prompt-engineered context space that gives Claude <strong>deep, reusable expertise</strong> for a specific task. Think of it as a "second brain" — someone has already found the optimal way to prompt your workflow so you don't have to start from scratch.</div>
       </div>
       <div class="card">
-        <div class="card-h" style="color:var(--ft-blue);font-size:clamp(0.82rem,1.1vw,0.95rem);margin-bottom:0.5rem">How to use it</div>
-        <div class="card-p" style="line-height:1.6">Open Claude → type <code>/morning</code> (or any skill). Claude reads all files in your workspace and delivers exactly what the skill is designed for: insights, priorities, to-dos — knowing the full context.</div>
+        <div class="card-h" style="color:var(--ft-blue);font-size:clamp(0.8rem,1.1vw,0.95rem);">How to use it</div>
+        <div class="card-p" style="line-height:1.6;">Open Claude → type <code>/morning</code> (or any skill). Claude reads all files in your workspace and delivers exactly what the skill is designed for: insights, priorities, to-dos — knowing the full context.</div>
       </div>
     </div>
-    <div style="display:flex;gap:0.6rem;flex-wrap:wrap;margin-top:clamp(0.6rem,1.2vh,1.2rem);align-items:center">
+    <div style="display:flex;gap:0.6rem;flex-wrap:wrap;flex-shrink:0;">
       <span class="tag tag-blue">Download pre-built skills</span>
       <span class="tag tag-outline">Build your own</span>
       <span class="tag tag-red">Connect to Linear, Slack, GitHub…</span>
     </div>
     <div class="infobar" style="background:#f0f0f9;border-left:3px solid var(--ft-blue);">
-      💡 Skills are essentially <strong style="color:var(--ft-blue)">expertise packaged as a prompt</strong> — once built, anyone on your team can invoke them instantly with a single slash command.
+      💡 Skills are essentially <strong style="color:var(--ft-blue)">expertise packaged as a prompt</strong> — once built, anyone on your team can invoke them with a single slash command.
     </div>
   </div>
 
-  <!-- ─── SLIDE 7: How Skills Work ─── -->
+  <!-- ─── 7. How Skills Work ─── -->
   <div class="slide theme-dark" data-index="6">
     <div class="deco"></div>
     <div class="tricolor"><span class="tc-b"></span><span class="tc-w"></span><span class="tc-r"></span></div>
     <div class="slide-label">Under the hood</div>
     <h2 class="big">How Skills Work</h2>
+
+    <div class="gap-push"></div>
+
     <div class="twocol">
       <div>
-        <p style="font-size:clamp(0.68rem,0.9vw,0.75rem);opacity:0.42;letter-spacing:0.12em;text-transform:uppercase;margin-bottom:0.85rem">Workspace structure</p>
-        <div class="steps" style="margin-top:0">
+        <p style="font-size:clamp(0.66rem,0.85vw,0.74rem);opacity:0.4;letter-spacing:0.12em;text-transform:uppercase;">Workspace structure</p>
+        <div class="steps">
           <div class="step"><span class="step-n" style="font-size:1.1rem">📁</span><div class="step-txt"><strong>config/ folder</strong>Claude loads tools, API connections, and settings from here automatically on startup.</div></div>
           <div class="step"><span class="step-n" style="font-size:1.1rem">📁</span><div class="step-txt"><strong>skills/ folder</strong>One skill file per task. Claude reads these when a slash command is triggered.</div></div>
           <div class="step"><span class="step-n" style="font-size:1.1rem">🧠</span><div class="step-txt"><strong>Context = intelligence</strong>The more relevant documents in your workspace, the sharper Claude's output becomes.</div></div>
         </div>
       </div>
       <div>
-        <p style="font-size:clamp(0.68rem,0.9vw,0.75rem);opacity:0.42;letter-spacing:0.12em;text-transform:uppercase;margin-bottom:0.85rem">Real-world examples</p>
-        <div class="card" style="margin-bottom:clamp(0.4rem,1vh,0.7rem)">
-          <div class="card-h">☀️ Morning briefing</div>
-          <div class="card-p">Dump all your documents into the workspace → Claude reads everything → delivers a focused brief on what to prioritise today.</div>
-        </div>
-        <div class="card" style="margin-bottom:clamp(0.4rem,1vh,0.7rem)">
-          <div class="card-h">💡 Idea → action</div>
-          <div class="card-p">Turn rough notes into structured, prioritised to-do lists — with full knowledge of your project, team, and constraints.</div>
-        </div>
-        <div class="card">
-          <div class="card-h">🔗 Connected workflows</div>
-          <div class="card-p">Connect to Linear via MCP → Claude creates and updates real tickets directly from your briefing.</div>
-        </div>
+        <p style="font-size:clamp(0.66rem,0.85vw,0.74rem);opacity:0.4;letter-spacing:0.12em;text-transform:uppercase;">Real-world examples</p>
+        <div class="card"><div class="card-h">☀️ Morning briefing</div><div class="card-p">Dump all your documents into the workspace → Claude reads everything → delivers a focused brief on what to prioritise today.</div></div>
+        <div class="card"><div class="card-h">💡 Idea → action</div><div class="card-p">Turn rough notes into structured, prioritised to-do lists — with full knowledge of your project, team, and constraints.</div></div>
+        <div class="card"><div class="card-h">🔗 Connected workflows</div><div class="card-p">Connect to Linear via MCP → Claude creates and updates real tickets directly from your briefing.</div></div>
       </div>
     </div>
   </div>
 
-  <!-- ─── SLIDE 8: MCP Servers ─── -->
+  <!-- ─── 8. MCP ─── -->
   <div class="slide theme-white" data-index="7">
     <div class="tricolor"><span class="tc-b"></span><span class="tc-w"></span><span class="tc-r"></span></div>
     <div class="slide-label">Advanced</div>
     <h2 class="big">MCP Servers</h2>
     <p class="sub">Model Context Protocol — the bridge that lets Claude talk to external APIs efficiently and securely.</p>
+
+    <div class="gap-push"></div>
+
     <div class="cgrid cg3">
-      <div class="card">
-        <div class="card-num">🔌</div>
-        <div class="card-h">What is MCP?</div>
-        <div class="card-p">A standard protocol that connects Claude to third-party services — like a universal adapter between AI and any API.</div>
-      </div>
-      <div class="card">
-        <div class="card-num">⚡</div>
-        <div class="card-h">What it enables</div>
-        <div class="card-p">Connect to Linear for tasks, Slack for messages, GitHub for code, Gmail, calendar — anything with an API.</div>
-      </div>
-      <div class="card">
-        <div class="card-num">🚀</div>
-        <div class="card-h">Why it matters</div>
-        <div class="card-p">No copy-pasting between tools. Claude fetches, updates, and acts on real data in your actual systems — live.</div>
-      </div>
+      <div class="card"><div class="card-num">🔌</div><div class="card-h">What is MCP?</div><div class="card-p">A standard protocol that connects Claude to third-party services — like a universal adapter between AI and any API.</div></div>
+      <div class="card"><div class="card-num">⚡</div><div class="card-h">What it enables</div><div class="card-p">Connect to Linear for tasks, Slack for messages, GitHub for code, Gmail, calendar — anything with an API.</div></div>
+      <div class="card"><div class="card-num">🚀</div><div class="card-h">Why it matters</div><div class="card-p">No copy-pasting between tools. Claude fetches, updates, and acts on real data in your actual systems — live.</div></div>
     </div>
     <div class="infobar" style="background:#000091;color:white;">
       <strong>Example:</strong> <code style="background:rgba(255,255,255,0.15);color:white">/morning</code> skill + Linear MCP → Claude reads all your open tickets, prioritises your day, and can create or update tasks — all from a single command.
     </div>
   </div>
 
-  <!-- ─── SLIDE 9: Takeaways ─── -->
+  <!-- ─── 9. Takeaways ─── -->
   <div class="slide theme-red" data-index="8">
     <div class="deco"></div>
     <img src="https://lafrenchtech.gouv.fr/app/themes/actimage-theme/public/images/logo/logo-french-tech.40489d.svg"
-         alt="La French Tech"
-         style="height:clamp(22px,3vh,32px);width:auto;flex-shrink:0;filter:brightness(0) invert(1);margin-bottom:clamp(1rem,3vh,2.2rem);">
+         alt="La French Tech" style="height:clamp(20px,2.8vh,30px);width:auto;flex-shrink:0;filter:brightness(0) invert(1);">
     <div class="tricolor"><span class="tc-b"></span><span class="tc-w"></span><span class="tc-r"></span></div>
     <div class="slide-label">Key Takeaways</div>
     <h2 class="big">What to remember</h2>
-    <div class="cgrid cg2" style="gap:clamp(0.5rem,1.2vh,0.75rem)">
+
+    <div class="gap-push"></div>
+
+    <div class="cgrid cg2">
       <div class="card"><div class="card-h">⌨️ Claude Code = terminal power</div><div class="card-p">Read, write, and reason over your actual files. Not a sandbox — your real project, on your machine.</div></div>
       <div class="card"><div class="card-h">🧠 Skills = reusable expertise</div><div class="card-p">Package the perfect prompt once, share it, run it with one slash command. Build on what others have perfected.</div></div>
       <div class="card"><div class="card-h">📊 Excel + Claude = smarter sheets</div><div class="card-p">Audit, fix, and extract from financial models without ever touching a formula manually.</div></div>
       <div class="card"><div class="card-h">🔌 MCP = connected AI workflows</div><div class="card-p">Claude isn't just a chatbot — it's an agent that takes action in your real tools via live API connections.</div></div>
     </div>
-    <p style="margin-top:auto;padding-top:clamp(1rem,2.5vh,1.6rem);font-size:clamp(0.7rem,1vw,0.8rem);opacity:0.5">French Tech Copenhagen · May 20, 2026 · claude.ai · Presented by Hadrien Matringe</p>
+    <p style="font-size:clamp(0.68rem,0.9vw,0.78rem);opacity:0.45;flex-shrink:0;">French Tech Copenhagen · May 20, 2026 · claude.ai · Presented by Hadrien Matringe</p>
   </div>
 
 </div>
 
-<!-- Nav -->
 <div id="nav">
   <button class="nav-btn" id="prev-btn" disabled onclick="navigate(-1)">&#8592;</button>
   <span id="slide-counter">1 / 9</span>
@@ -551,27 +413,18 @@ slides.forEach((_, i) => {
 function goTo(idx) {
   if (idx < 0 || idx >= total || idx === current) return;
   const dir = idx > current ? 1 : -1;
-  const outEl = slides[current];
-  const inEl  = slides[idx];
+  const outEl = slides[current], inEl = slides[idx];
   current = idx;
-
-  outEl.classList.remove('active', 'prev', 'exit-right');
+  outEl.classList.remove('active','prev','exit-right');
   outEl.classList.add(dir > 0 ? 'prev' : 'exit-right');
-
-  inEl.classList.remove('active', 'prev', 'exit-right');
+  inEl.classList.remove('active','prev','exit-right');
   inEl.style.transition = 'none';
   inEl.style.transform  = dir > 0 ? 'translateX(60px)' : 'translateX(-60px)';
   inEl.style.opacity    = '0';
-
-  requestAnimationFrame(() => {
-    requestAnimationFrame(() => {
-      inEl.style.transition = '';
-      inEl.style.transform  = '';
-      inEl.style.opacity    = '';
-      inEl.classList.add('active');
-    });
-  });
-
+  requestAnimationFrame(() => requestAnimationFrame(() => {
+    inEl.style.transition = inEl.style.transform = inEl.style.opacity = '';
+    inEl.classList.add('active');
+  }));
   updateUI();
 }
 
@@ -582,43 +435,29 @@ function updateUI() {
   document.getElementById('prev-btn').disabled = current === 0;
   document.getElementById('next-btn').disabled = current === total - 1;
   document.getElementById('progress').style.width = ((current + 1) / total * 100) + '%';
-  document.querySelectorAll('.dot').forEach((d, i) => d.classList.toggle('active', i === current));
+  document.querySelectorAll('.dot').forEach((d,i) => d.classList.toggle('active', i === current));
 
-  const isLight = slides[current].classList.contains('theme-white');
-  const textCol  = isLight ? 'rgba(0,0,0,0.4)'  : 'rgba(255,255,255,0.5)';
-  const btnBdr   = isLight ? 'rgba(0,0,0,0.2)'  : 'rgba(255,255,255,0.3)';
-  const btnClr   = isLight ? '#333'              : 'white';
-  const btnBg    = isLight ? 'rgba(0,0,0,0.05)' : 'rgba(0,0,0,0.2)';
-  const dotAct   = isLight ? '#000091'           : 'white';
-  const dotInact = isLight ? 'rgba(0,0,0,0.2)'  : 'rgba(255,255,255,0.25)';
-  const dimCol   = isLight ? 'rgba(0,0,0,0.25)' : 'rgba(255,255,255,0.3)';
-
-  document.getElementById('slide-counter').style.color = textCol;
-  document.querySelectorAll('.nav-btn').forEach(b => {
-    b.style.borderColor = btnBdr; b.style.color = btnClr; b.style.background = btnBg;
-  });
-  document.querySelectorAll('.dot').forEach((d, i) => {
-    d.style.background = i === current ? dotAct : dotInact;
-  });
-  const kh = document.getElementById('kbd-hint');
-  if (kh) kh.style.color = dimCol;
-  const sl = document.getElementById('slide-loc');
-  if (sl) { sl.style.color = dimCol; sl.textContent = (current + 1) + ' of ' + total; }
+  const light = slides[current].classList.contains('theme-white');
+  const tc  = light ? 'rgba(0,0,0,0.4)'  : 'rgba(255,255,255,0.5)';
+  const bb  = light ? 'rgba(0,0,0,0.18)' : 'rgba(255,255,255,0.3)';
+  const bc  = light ? '#333'             : 'white';
+  const bg  = light ? 'rgba(0,0,0,0.05)' : 'rgba(0,0,0,0.2)';
+  const dim = light ? 'rgba(0,0,0,0.22)' : 'rgba(255,255,255,0.25)';
+  document.getElementById('slide-counter').style.color = tc;
+  document.querySelectorAll('.nav-btn').forEach(b => { b.style.borderColor=bb; b.style.color=bc; b.style.background=bg; });
+  document.querySelectorAll('.dot').forEach((d,i) => { d.style.background = i===current ? (light?'#000091':'white') : (light?'rgba(0,0,0,0.18)':'rgba(255,255,255,0.22)'); });
+  const kh=document.getElementById('kbd-hint'); if(kh) kh.style.color=dim;
+  const sl=document.getElementById('slide-loc'); if(sl){ sl.style.color=dim; sl.textContent=(current+1)+' of '+total; }
 }
 
 document.addEventListener('keydown', e => {
-  if (e.key === 'ArrowRight' || e.key === 'ArrowDown' || e.key === ' ') { e.preventDefault(); navigate(1); }
-  if (e.key === 'ArrowLeft'  || e.key === 'ArrowUp')                    { e.preventDefault(); navigate(-1); }
-  if (e.key === 'Home') goTo(0);
-  if (e.key === 'End')  goTo(total - 1);
+  if (e.key==='ArrowRight'||e.key==='ArrowDown'||e.key===' ') { e.preventDefault(); navigate(1); }
+  if (e.key==='ArrowLeft' ||e.key==='ArrowUp')                { e.preventDefault(); navigate(-1); }
+  if (e.key==='Home') goTo(0); if (e.key==='End') goTo(total-1);
 });
-
-let tx = 0;
-document.addEventListener('touchstart', e => { tx = e.touches[0].clientX; }, { passive: true });
-document.addEventListener('touchend',   e => {
-  const diff = tx - e.changedTouches[0].clientX;
-  if (Math.abs(diff) > 45) navigate(diff > 0 ? 1 : -1);
-});
+let tx=0;
+document.addEventListener('touchstart', e=>{ tx=e.touches[0].clientX; }, {passive:true});
+document.addEventListener('touchend',   e=>{ const d=tx-e.changedTouches[0].clientX; if(Math.abs(d)>45) navigate(d>0?1:-1); });
 
 updateUI();
 </script>
