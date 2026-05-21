@@ -172,24 +172,19 @@ code { background: rgba(255,255,255,0.14); padding: 1px 6px; border-radius: 4px;
   <!-- ─── 1. Cover ─── -->
   <div class="slide theme-dark active" data-index="0">
     <div class="deco"></div>
-
     <img src="https://lafrenchtech.gouv.fr/app/themes/actimage-theme/public/images/logo/logo-french-tech.40489d.svg"
          alt="La French Tech" style="height:clamp(24px,3.2vh,36px);width:auto;flex-shrink:0;filter:brightness(0) invert(1);">
-
     <div class="tricolor"><span class="tc-b"></span><span class="tc-w"></span><span class="tc-r"></span></div>
-
-    <!-- Title centered in whatever space remains between logo/tricolor and meta row -->
     <div class="cover-body">
       <div class="slide-label">Introduction to AI tools · Copenhagen</div>
       <h1 class="big">Claude Code<br><em style="font-style:italic;opacity:0.55">&amp;</em> Skills</h1>
-      <p class="sub" style="margin-top:clamp(0.2rem,0.5vh,0.4rem)">A beginner-friendly introduction to working with Claude directly in your terminal, files, and daily workflows.</p>
+      <p class="sub" style="margin-top:clamp(0.2rem,0.5vh,0.4rem)">Three live demos: from Excel to a personal AI brain to pushing tasks into Linear — no coding experience needed.</p>
     </div>
-
     <div style="display:flex;gap:clamp(1rem,3vw,2rem);flex-wrap:wrap;flex-shrink:0;">
       <div style="font-size:clamp(0.72rem,1.1vw,0.82rem);opacity:0.5;"><strong style="display:block;opacity:1;margin-bottom:1px;font-size:clamp(0.76rem,1.2vw,0.88rem)">May 20, 2026</strong>French Tech Copenhagen</div>
-      <div style="font-size:clamp(0.72rem,1.1vw,0.82rem);opacity:0.5;"><strong style="display:block;opacity:1;margin-bottom:1px;font-size:clamp(0.76rem,1.2vw,0.88rem)">Presenter</strong>Hadrien Matringe</div>
-      <div style="font-size:clamp(0.72rem,1.1vw,0.82rem);opacity:0.5;"><strong style="display:block;opacity:1;margin-bottom:1px;font-size:clamp(0.76rem,1.2vw,0.88rem)">Audience</strong>Beginners welcome</div>
-      <div style="font-size:clamp(0.72rem,1.1vw,0.82rem);opacity:0.5;"><strong style="display:block;opacity:1;margin-bottom:1px;font-size:clamp(0.76rem,1.2vw,0.88rem)">Tool</strong>Claude by Anthropic</div>
+      <div style="font-size:clamp(0.72rem,1.1vw,0.82rem);opacity:0.5;"><strong style="display:block;opacity:1;margin-bottom:1px;font-size:clamp(0.76rem,1.2vw,0.88rem)">Presenter</strong>Hadrien Matringe, Fractional CCO</div>
+      <div style="font-size:clamp(0.72rem,1.1vw,0.82rem);opacity:0.5;"><strong style="display:block;opacity:1;margin-bottom:1px;font-size:clamp(0.76rem,1.2vw,0.88rem)">Format</strong>Demo only — try it at home after</div>
+      <div style="font-size:clamp(0.72rem,1.1vw,0.82rem);opacity:0.5;"><strong style="display:block;opacity:1;margin-bottom:1px;font-size:clamp(0.76rem,1.2vw,0.88rem)">Series</strong>Free workshops since Jan 2026</div>
     </div>
   </div>
 
@@ -198,17 +193,15 @@ code { background: rgba(255,255,255,0.14); padding: 1px 6px; border-radius: 4px;
     <div class="tricolor"><span class="tc-b"></span><span class="tc-w"></span><span class="tc-r"></span></div>
     <div class="slide-label">Overview</div>
     <h2 class="big">What is Claude Code?</h2>
-    <p class="sub">An AI assistant that works <strong>directly with your files</strong> — from your terminal, inside your actual project folder.</p>
-
-    <div class="gap-push"></div><!-- space lives here, between title and cards -->
-
+    <p class="sub">Like claude.ai in your browser — but it works <strong>on your actual files</strong>, reads and writes them, and can use tools beyond just replying to messages.</p>
+    <div class="gap-push"></div>
     <div class="cgrid cg3">
-      <div class="card"><div class="card-num">01</div><div class="card-h">Terminal-based</div><div class="card-p">Runs in your command line. No browser tab — Claude lives where you actually work.</div></div>
-      <div class="card"><div class="card-num">02</div><div class="card-h">File-aware</div><div class="card-p">Reads and writes files on your computer. Scans your entire folder to understand the full context.</div></div>
-      <div class="card"><div class="card-num">03</div><div class="card-h">Subscription-based</div><div class="card-p">No freemium restrictions — requires a Claude plan, but unlocks full capabilities across your workspace.</div></div>
+      <div class="card"><div class="card-num">01</div><div class="card-h">Works on your files</div><div class="card-p">Reads and writes files directly on your computer. Operates inside one folder — it will not crawl your entire system.</div></div>
+      <div class="card"><div class="card-num">02</div><div class="card-h">More than a chatbot</div><div class="card-p">Can use tools, run web searches to benchmark data, connect to external services via MCP servers — all without leaving your workflow.</div></div>
+      <div class="card"><div class="card-num">03</div><div class="card-h">€20/month, no freemium</div><div class="card-p">One Claude subscription covers all interfaces: browser, terminal, Excel plugin, desktop app. No free tier — but one plan unlocks everything.</div></div>
     </div>
     <div class="infobar" style="background:#000091;color:white;">
-      💡 <strong>Not a terminal person?</strong> The <strong>Claude Code app</strong> gives you the same power in a friendlier interface — no command line required.
+      💡 <strong>Not a terminal person?</strong> The <strong>Claude desktop app</strong> gives you the same power in a friendlier interface — and that's what we'll use for Demo 2.
     </div>
   </div>
 
@@ -218,19 +211,17 @@ code { background: rgba(255,255,255,0.14); padding: 1px 6px; border-radius: 4px;
     <div class="tricolor"><span class="tc-b"></span><span class="tc-w"></span><span class="tc-r"></span></div>
     <div class="slide-label">Setup</div>
     <h2 class="big">Getting Started</h2>
-    <p class="sub">Three steps and you're ready to use Claude directly in your projects.</p>
-
+    <p class="sub">Install once, then navigate to any folder and type <code>claude</code>. It figures out the rest.</p>
     <div class="gap-push"></div>
-
     <div class="steps">
-      <div class="step"><span class="step-n">1</span><div class="step-txt"><strong>Install Claude Code</strong>Copy the install command from claude.ai/code and paste it into your terminal. One line, done.</div></div>
-      <div class="step"><span class="step-n">2</span><div class="step-txt"><strong>Navigate to your project folder</strong>Claude works within a single directory — your codebase, documents, or any workspace folder you choose.</div></div>
-      <div class="step"><span class="step-n">3</span><div class="step-txt"><strong>Launch and go</strong>Type <code>claude</code> to start. It scans your folder automatically and is immediately ready to read, write, and assist.</div></div>
+      <div class="step"><span class="step-n">1</span><div class="step-txt"><strong>Install Claude Code</strong>Copy the one-line command from claude.ai/code, paste it in your terminal. Type <code>claude login</code> the first time to authenticate.</div></div>
+      <div class="step"><span class="step-n">2</span><div class="step-txt"><strong>Choose your folder &amp; initialise</strong>Navigate to the folder you want Claude to work in. Run <code>/init</code> — Claude generates a <code>claude.md</code> file at the root to anchor every future conversation to that workspace.</div></div>
+      <div class="step"><span class="step-n">3</span><div class="step-txt"><strong>Start working</strong>Type <code>claude</code> to launch. All commands start with <code>/</code> — that's why you hear "slash commands." Claude stays inside your folder and won't touch the rest of your computer.</div></div>
     </div>
     <div style="display:flex;gap:0.65rem;flex-wrap:wrap;flex-shrink:0;">
       <span class="tag tag-ghost">Mac · Windows · Linux</span>
-      <span class="tag tag-red">Claude subscription required</span>
-      <span class="tag tag-ghost">Node.js required</span>
+      <span class="tag tag-red">€20/month Claude plan required</span>
+      <span class="tag tag-ghost">Terminal or Claude desktop app</span>
     </div>
   </div>
 
@@ -239,21 +230,27 @@ code { background: rgba(255,255,255,0.14); padding: 1px 6px; border-radius: 4px;
     <div class="tricolor"><span class="tc-b"></span><span class="tc-w"></span><span class="tc-r"></span></div>
     <div class="slide-label">The Claude Ecosystem</div>
     <h2 class="big">Three ways to use Claude</h2>
-
     <div class="gap-push"></div>
-
     <div class="itiles">
-      <div class="itile"><span class="itile-icon">💬</span><div class="itile-h">Chat</div><div class="itile-p">The browser interface. Conversational, fast, perfect for questions, drafts, and exploration.</div></div>
-      <div class="itile"><span class="itile-icon">🤝</span><div class="itile-h">Cowork</div><div class="itile-p">Desktop tool for non-developers. Automate file and task management without writing a line of code.</div></div>
+      <div class="itile">
+        <span class="itile-icon">💬</span>
+        <div class="itile-h">Chat</div>
+        <div class="itile-p">Same conversations as the browser. The desktop app just brings them to your menu bar — no extra value over claude.ai.</div>
+      </div>
+      <div class="itile">
+        <span class="itile-icon">🤝</span>
+        <div class="itile-h">Cowork</div>
+        <div class="itile-p">Released before Claude Code came to the desktop. Now largely redundant — if you can use Code, use Code instead.</div>
+      </div>
       <div class="itile" style="border:2px solid var(--ft-blue)!important;background:#eeeef9!important;">
         <span class="itile-icon">⌨️</span>
         <div class="itile-h" style="color:var(--ft-blue)">Code</div>
-        <div class="itile-p">Creates code <em>and</em> accepts chat input — the most powerful mode, combining both worlds in the terminal.</div>
+        <div class="itile-p">Combines chat <em>and</em> file access in one session. You select a folder, then talk to Claude about everything inside it.</div>
         <div style="margin-top:clamp(0.4rem,1vh,0.8rem)"><span class="tag tag-blue">Today's focus</span></div>
       </div>
     </div>
     <div class="infobar" style="background:#f0f0f9;border-left:3px solid var(--ft-blue);">
-      Claude Code stands out because it can <strong style="color:var(--ft-blue)">write code and discuss it in the same session</strong> — your terminal becomes a full AI-powered workspace.
+      In the desktop app, the Code tab adds a <strong style="color:var(--ft-blue)">folder selector above the chat input</strong> — that's the only difference from Chat, and it's everything.
     </div>
   </div>
 
@@ -265,26 +262,24 @@ code { background: rgba(255,255,255,0.14); padding: 1px 6px; border-radius: 4px;
       <span style="font-size:clamp(0.7rem,1vw,0.8rem);opacity:0.4;letter-spacing:0.05em">Microsoft Excel × Claude</span>
     </div>
     <h2 class="big">Claude in Excel</h2>
-    <p class="sub">Understanding financial models, catching bugs — and fixing them — without touching a formula.</p>
-
+    <p class="sub">A coffee company's 3-year financial model: P&amp;L, balance sheet, cash flows, EBITDA bridge. One question uncovers a hidden bug.</p>
     <div class="gap-push"></div>
-
     <div class="twocol">
       <div>
-        <p style="font-size:clamp(0.66rem,0.85vw,0.74rem);opacity:0.42;letter-spacing:0.12em;text-transform:uppercase;">How to activate</p>
+        <p style="font-size:clamp(0.66rem,0.85vw,0.74rem);opacity:0.42;letter-spacing:0.12em;text-transform:uppercase;">What happened in the demo</p>
         <div class="steps">
-          <div class="step"><span class="step-n" style="font-size:0.9rem">→</span><div class="step-txt">Open a financial spreadsheet with multi-year statements</div></div>
-          <div class="step"><span class="step-n" style="font-size:0.9rem">→</span><div class="step-txt">Activate the <strong>Claude plugin</strong> (top right corner) — available with Claude + Microsoft 365</div></div>
-          <div class="step"><span class="step-n" style="font-size:0.9rem">→</span><div class="step-txt">Ask questions in the chat panel that appears</div></div>
+          <div class="step"><span class="step-n" style="font-size:0.9rem">→</span><div class="step-txt">Asked: <em>"Is this company heavily leveraged? Show debt-to-equity evolution."</em> Claude cited exact cells.</div></div>
+          <div class="step"><span class="step-n" style="font-size:0.9rem">→</span><div class="step-txt">Asked Claude to benchmark the 45→44→43% COGS trend against Scandinavian coffee industry data — it searched the web and quoted sources.</div></div>
+          <div class="step"><span class="step-n" style="font-size:0.9rem">→</span><div class="step-txt">Asked: <em>"What if growth is only 5% — does the runway hold?"</em> Claude spotted a <strong>hardcoded value</strong> breaking the model — in under a minute.</div></div>
         </div>
       </div>
       <div>
-        <p style="font-size:clamp(0.66rem,0.85vw,0.74rem);opacity:0.42;letter-spacing:0.12em;text-transform:uppercase;">What it can do</p>
+        <p style="font-size:clamp(0.66rem,0.85vw,0.74rem);opacity:0.42;letter-spacing:0.12em;text-transform:uppercase;">Why it matters</p>
         <div class="steps">
-          <div class="step"><span class="step-n" style="color:#4ade80">✓</span><div class="step-txt"><strong>Highlights exact cells</strong> that answer your question</div></div>
-          <div class="step"><span class="step-n" style="color:#4ade80">✓</span><div class="step-txt"><strong>Flags bugs</strong> you didn't ask about — proactively</div></div>
-          <div class="step"><span class="step-n" style="color:#4ade80">✓</span><div class="step-txt"><strong>Updates the file</strong> directly with corrections</div></div>
-          <div class="step"><span class="step-n" style="color:#4ade80">✓</span><div class="step-txt"><strong>Creates a new sheet</strong> with only the data you asked for</div></div>
+          <div class="step"><span class="step-n" style="color:#4ade80">✓</span><div class="step-txt"><strong>Instant audit</strong> — a hardcoded cell that would have taken 50 minutes to find was flagged in seconds</div></div>
+          <div class="step"><span class="step-n" style="color:#4ade80">✓</span><div class="step-txt"><strong>Still answered</strong> — despite the bug, Claude gave a runway estimate and explained what to fix first</div></div>
+          <div class="step"><span class="step-n" style="color:#4ade80">✓</span><div class="step-txt"><strong>Zero setup</strong> — the Claude plugin has full cell access automatically, no configuration needed</div></div>
+          <div class="step"><span class="step-n" style="color:#fbbf24">→</span><div class="step-txt"><strong>Requires</strong> Claude subscription + Microsoft 365 to activate the plugin (top-right corner in Excel)</div></div>
         </div>
       </div>
     </div>
@@ -295,30 +290,26 @@ code { background: rgba(255,255,255,0.14); padding: 1px 6px; border-radius: 4px;
     <div class="tricolor"><span class="tc-b"></span><span class="tc-w"></span><span class="tc-r"></span></div>
     <div style="display:flex;align-items:center;gap:1rem;flex-shrink:0;">
       <span class="tag tag-blue">Demo 2</span>
-      <span style="font-size:clamp(0.7rem,1vw,0.8rem);opacity:0.4;letter-spacing:0.05em">Custom Commands</span>
+      <span style="font-size:clamp(0.7rem,1vw,0.8rem);opacity:0.4;letter-spacing:0.05em">The Second Brain</span>
     </div>
     <h2 class="big">Claude Skills</h2>
-    <p class="sub">Package expertise as <code>/your-command</code> — reusable, shareable, instantly powerful.</p>
-
+    <p class="sub">Clara is a UX designer. Her workspace holds her journal, call transcripts, and an idea maturation funnel. One slash command gives her a morning brief.</p>
     <div class="gap-push"></div>
-
     <div class="cgrid cg2">
       <div class="card">
-        <div class="card-h" style="color:var(--ft-blue);font-size:clamp(0.8rem,1.1vw,0.95rem);">What is a skill?</div>
-        <div class="card-p" style="line-height:1.6;">A prompt-engineered context space that gives Claude <strong>deep, reusable expertise</strong> for a specific task. Think of it as a "second brain" — someone has already found the optimal way to prompt your workflow so you don't have to start from scratch.</div>
+        <div class="card-h" style="color:var(--ft-blue);font-size:clamp(0.8rem,1.1vw,0.95rem);">What a skill is</div>
+        <div class="card-p" style="line-height:1.6;">A plain text file (<code>skill.md</code>) that encodes a repeatable task as precisely as possible. Stored in <code>.claude/skills/morning/</code>, invoked as <code>/x·morning</code> — the <code>x</code> prefix distinguishes your skills from downloaded ones.<br><br>You can ask Claude to <em>write</em> the skill for you: describe your workflow once and it does the engineering.</div>
       </div>
       <div class="card">
-        <div class="card-h" style="color:var(--ft-blue);font-size:clamp(0.8rem,1.1vw,0.95rem);">How to use it</div>
-        <div class="card-p" style="line-height:1.6;">Open Claude → type <code>/morning</code> (or any skill). Claude reads all files in your workspace and delivers exactly what the skill is designed for: insights, priorities, to-dos — knowing the full context.</div>
+        <div class="card-h" style="color:var(--ft-blue);font-size:clamp(0.8rem,1.1vw,0.95rem);">What the morning brief surfaced</div>
+        <div class="card-p" style="line-height:1.6;">After reading all of Clara's files, Claude flagged three things unprompted:<br><br>
+        🔴 <strong>Mark</strong> — pattern of unpaid hours + red flags in journal. Verdict: stop negotiating with yourself.<br>
+        💰 <strong>Rate hesitation</strong> — recurring across multiple notes. Verdict: raise your prices.<br>
+        ✂️ <strong>Side project</strong> — quietly omitted. Claude judged it a distraction and didn't clutter the brief.</div>
       </div>
     </div>
-    <div style="display:flex;gap:0.6rem;flex-wrap:wrap;flex-shrink:0;">
-      <span class="tag tag-blue">Download pre-built skills</span>
-      <span class="tag tag-outline">Build your own</span>
-      <span class="tag tag-red">Connect to Linear, Slack, GitHub…</span>
-    </div>
     <div class="infobar" style="background:#f0f0f9;border-left:3px solid var(--ft-blue);">
-      💡 Skills are essentially <strong style="color:var(--ft-blue)">expertise packaged as a prompt</strong> — once built, anyone on your team can invoke them with a single slash command.
+      💡 <em>"A skill is any piece of work you want done in a certain way. Once you've done it once — crystallise it."</em> — Hadrien
     </div>
   </div>
 
@@ -328,71 +319,95 @@ code { background: rgba(255,255,255,0.14); padding: 1px 6px; border-radius: 4px;
     <div class="tricolor"><span class="tc-b"></span><span class="tc-w"></span><span class="tc-r"></span></div>
     <div class="slide-label">Under the hood</div>
     <h2 class="big">How Skills Work</h2>
-
     <div class="gap-push"></div>
-
     <div class="twocol">
       <div>
-        <p style="font-size:clamp(0.66rem,0.85vw,0.74rem);opacity:0.4;letter-spacing:0.12em;text-transform:uppercase;">Workspace structure</p>
+        <p style="font-size:clamp(0.66rem,0.85vw,0.74rem);opacity:0.4;letter-spacing:0.12em;text-transform:uppercase;">Workspace file structure</p>
         <div class="steps">
-          <div class="step"><span class="step-n" style="font-size:1.1rem">📁</span><div class="step-txt"><strong>config/ folder</strong>Claude loads tools, API connections, and settings from here automatically on startup.</div></div>
-          <div class="step"><span class="step-n" style="font-size:1.1rem">📁</span><div class="step-txt"><strong>skills/ folder</strong>One skill file per task. Claude reads these when a slash command is triggered.</div></div>
-          <div class="step"><span class="step-n" style="font-size:1.1rem">🧠</span><div class="step-txt"><strong>Context = intelligence</strong>The more relevant documents in your workspace, the sharper Claude's output becomes.</div></div>
+          <div class="step"><span class="step-n" style="font-size:1.1rem">📄</span><div class="step-txt"><strong>claude.md</strong> (root) — auto-generated on <code>/init</code>. Read at the start of every conversation to keep Claude focused on this workspace.</div></div>
+          <div class="step"><span class="step-n" style="font-size:1.1rem">📁</span><div class="step-txt"><strong>.claude/config/</strong> — hidden folder. Claude loads MCP connections and tools from here automatically on startup.</div></div>
+          <div class="step"><span class="step-n" style="font-size:1.1rem">📁</span><div class="step-txt"><strong>.claude/skills/morning/skill.md</strong> — one file per skill. The folder name becomes the slash command: <code>/x·morning</code>.</div></div>
+          <div class="step"><span class="step-n" style="font-size:1.1rem">🧠</span><div class="step-txt"><strong>Context builds over time</strong> — add more relevant files to the workspace and Claude's answers gradually get sharper.</div></div>
         </div>
       </div>
       <div>
-        <p style="font-size:clamp(0.66rem,0.85vw,0.74rem);opacity:0.4;letter-spacing:0.12em;text-transform:uppercase;">Real-world examples</p>
-        <div class="card"><div class="card-h">☀️ Morning briefing</div><div class="card-p">Dump all your documents into the workspace → Claude reads everything → delivers a focused brief on what to prioritise today.</div></div>
-        <div class="card"><div class="card-h">💡 Idea → action</div><div class="card-p">Turn rough notes into structured, prioritised to-do lists — with full knowledge of your project, team, and constraints.</div></div>
-        <div class="card"><div class="card-h">🔗 Connected workflows</div><div class="card-p">Connect to Linear via MCP → Claude creates and updates real tickets directly from your briefing.</div></div>
+        <p style="font-size:clamp(0.66rem,0.85vw,0.74rem);opacity:0.4;letter-spacing:0.12em;text-transform:uppercase;">Clara's idea maturation funnel</p>
+        <div class="card"><div class="card-h">💡 Raw ideas/</div><div class="card-p">Dump ideas here to clear headspace. No pressure to act — just offload them so they don't occupy working memory.</div></div>
+        <div class="card"><div class="card-h">🧪 Experiments/</div><div class="card-p">Ideas worth testing. E.g. "Should I productise UX audits?" — moved here when she decides to try it.</div></div>
+        <div class="card"><div class="card-h">✅ Outcomes/</div><div class="card-p">Concluded experiments with a clear verdict. Claude reads the full arc and advises accordingly — without being told the history every time.</div></div>
       </div>
     </div>
   </div>
 
-  <!-- ─── 8. MCP ─── -->
-  <div class="slide theme-white" data-index="7">
-    <div class="tricolor"><span class="tc-b"></span><span class="tc-w"></span><span class="tc-r"></span></div>
-    <div class="slide-label">Advanced</div>
-    <h2 class="big">MCP Servers</h2>
-    <p class="sub">Model Context Protocol — the bridge that lets Claude talk to external APIs efficiently and securely.</p>
-
-    <div class="gap-push"></div>
-
-    <div class="cgrid cg3">
-      <div class="card"><div class="card-num">🔌</div><div class="card-h">What is MCP?</div><div class="card-p">A standard protocol that connects Claude to third-party services — like a universal adapter between AI and any API.</div></div>
-      <div class="card"><div class="card-num">⚡</div><div class="card-h">What it enables</div><div class="card-p">Connect to Linear for tasks, Slack for messages, GitHub for code, Gmail, calendar — anything with an API.</div></div>
-      <div class="card"><div class="card-num">🚀</div><div class="card-h">Why it matters</div><div class="card-p">No copy-pasting between tools. Claude fetches, updates, and acts on real data in your actual systems — live.</div></div>
+  <!-- ─── 8. Demo 3 — Linear / MCP ─── -->
+  <div class="slide theme-midnight" data-index="7">
+    <div class="deco"></div>
+    <div style="display:flex;align-items:center;gap:1rem;flex-shrink:0;">
+      <span class="tag tag-red">Demo 3</span>
+      <span style="font-size:clamp(0.7rem,1vw,0.8rem);opacity:0.4;letter-spacing:0.05em">Product brief → Linear tickets via MCP</span>
     </div>
-    <div class="infobar" style="background:#000091;color:white;">
-      <strong>Example:</strong> <code style="background:rgba(255,255,255,0.15);color:white">/morning</code> skill + Linear MCP → Claude reads all your open tickets, prioritises your day, and can create or update tasks — all from a single command.
+    <h2 class="big">Claude + Linear</h2>
+    <p class="sub">A SaaS product brief lives in the workspace. One prompt turns it into user stories — then pushes them live into Linear, spread across 5 weeks.</p>
+    <div class="gap-push"></div>
+    <div class="twocol">
+      <div>
+        <p style="font-size:clamp(0.66rem,0.85vw,0.74rem);opacity:0.42;letter-spacing:0.12em;text-transform:uppercase;">The workflow</p>
+        <div class="steps">
+          <div class="step"><span class="step-n">1</span><div class="step-txt"><strong>Brief → user stories</strong> — Claude reads the product brief and breaks it into actionable development stories. No PM experience needed.</div></div>
+          <div class="step"><span class="step-n">2</span><div class="step-txt"><strong>Stories → Linear</strong> — <em>"Take all user stories and put them in Linear, spanning the next 5 weeks."</em> Claude calls the Linear API via MCP and creates issues live.</div></div>
+          <div class="step"><span class="step-n">3</span><div class="step-txt"><strong>Visible in real time</strong> — issues appear in the Linear board as Claude works. No copy-paste, no manual ticket creation.</div></div>
+        </div>
+      </div>
+      <div>
+        <p style="font-size:clamp(0.66rem,0.85vw,0.74rem);opacity:0.42;letter-spacing:0.12em;text-transform:uppercase;">What is MCP exactly?</p>
+        <div class="card"><div class="card-h">🔌 A wrapper around an API</div><div class="card-p">Linear already has an API. The MCP server is how an LLM like Claude can call that API efficiently and in a predictable way.</div></div>
+        <div class="card"><div class="card-h">⚡ No MCP? Claude improvises</div><div class="card-p">If no MCP exists, Claude tries the CLI, or writes a plain Python / Ruby script to reach the same outcome.</div></div>
+        <div class="card"><div class="card-h">🎯 The right mindset</div><div class="card-p"><em>"Try ambitious. Only fine-tune if you get stuck."</em> Claude is creative enough to find a path even without perfect tooling.</div></div>
+      </div>
     </div>
   </div>
 
-  <!-- ─── 9. Takeaways ─── -->
-  <div class="slide theme-red" data-index="8">
+  <!-- ─── 9. MCP ─── -->
+  <div class="slide theme-white" data-index="8">
+    <div class="tricolor"><span class="tc-b"></span><span class="tc-w"></span><span class="tc-r"></span></div>
+    <div class="slide-label">Advanced</div>
+    <h2 class="big">MCP Servers</h2>
+    <p class="sub">Model Context Protocol — the standard that lets Claude act inside your real tools, not just talk about them.</p>
+    <div class="gap-push"></div>
+    <div class="cgrid cg3">
+      <div class="card"><div class="card-num">🔌</div><div class="card-h">What is MCP?</div><div class="card-p">A protocol that wraps any existing API so an LLM can call it reliably. If a tool has an API (Linear, Slack, GitHub, Gmail…), it can have an MCP server.</div></div>
+      <div class="card"><div class="card-num">⚡</div><div class="card-h">What it enables</div><div class="card-p">Claude moves from reading and writing local files to <em>acting</em> in external systems — creating tickets, sending messages, querying live data — all from one prompt.</div></div>
+      <div class="card"><div class="card-num">🚀</div><div class="card-h">How to set it up</div><div class="card-p">Add the MCP server config to your <code>.claude/config/</code> folder. Claude detects it at startup and gains access to that tool automatically.</div></div>
+    </div>
+    <div class="infobar" style="background:#000091;color:white;">
+      <strong>Performance note:</strong> Running 5–6 Claude projects in parallel causes no noticeable slowdown — tested on a 2021 MacBook Pro.
+    </div>
+  </div>
+
+  <!-- ─── 10. Takeaways ─── -->
+  <div class="slide theme-red" data-index="9">
     <div class="deco"></div>
     <img src="https://lafrenchtech.gouv.fr/app/themes/actimage-theme/public/images/logo/logo-french-tech.40489d.svg"
          alt="La French Tech" style="height:clamp(20px,2.8vh,30px);width:auto;flex-shrink:0;filter:brightness(0) invert(1);">
     <div class="tricolor"><span class="tc-b"></span><span class="tc-w"></span><span class="tc-r"></span></div>
     <div class="slide-label">Key Takeaways</div>
     <h2 class="big">What to remember</h2>
-
     <div class="gap-push"></div>
-
     <div class="cgrid cg2">
-      <div class="card"><div class="card-h">⌨️ Claude Code = terminal power</div><div class="card-p">Read, write, and reason over your actual files. Not a sandbox — your real project, on your machine.</div></div>
-      <div class="card"><div class="card-h">🧠 Skills = reusable expertise</div><div class="card-p">Package the perfect prompt once, share it, run it with one slash command. Build on what others have perfected.</div></div>
-      <div class="card"><div class="card-h">📊 Excel + Claude = smarter sheets</div><div class="card-p">Audit, fix, and extract from financial models without ever touching a formula manually.</div></div>
-      <div class="card"><div class="card-h">🔌 MCP = connected AI workflows</div><div class="card-p">Claude isn't just a chatbot — it's an agent that takes action in your real tools via live API connections.</div></div>
+      <div class="card"><div class="card-h">📊 Excel audit in minutes</div><div class="card-p">Whatever you'd delegate to a human on a spreadsheet, Claude does faster. It found a hardcoded bug in under a minute that would have taken 50.</div></div>
+      <div class="card"><div class="card-h">🧠 Skills = crystallised expertise</div><div class="card-p">Do something once well, turn it into a skill. Next time: one slash command. Ask Claude to write the skill file itself if needed.</div></div>
+      <div class="card"><div class="card-h">🔌 MCP = Claude acts, not just talks</div><div class="card-p">Connect any API-backed tool. Brief → user stories → Linear tickets, live, without copy-pasting anything.</div></div>
+      <div class="card"><div class="card-h">🎯 Try ambitious first</div><div class="card-p"><em>"If you're not sure, just try ambitious, and only fine-tune if you get stuck."</em> — Hadrien Matringe</div></div>
     </div>
     <p style="font-size:clamp(0.68rem,0.9vw,0.78rem);opacity:0.45;flex-shrink:0;">French Tech Copenhagen · May 20, 2026 · claude.ai · Presented by Hadrien Matringe</p>
   </div>
+
 
 </div>
 
 <div id="nav">
   <button class="nav-btn" id="prev-btn" disabled onclick="navigate(-1)">&#8592;</button>
-  <span id="slide-counter">1 / 9</span>
+  <span id="slide-counter">1 / 10</span>
   <button class="nav-btn" id="next-btn" onclick="navigate(1)">&#8594;</button>
 </div>
 <div id="dots"></div>
